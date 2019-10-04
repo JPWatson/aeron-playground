@@ -10,11 +10,11 @@ services:
   subscriber:
     <<: *default-hydra
     environment:
-      ENTRY_POINT: "io.aeron.samples.BasicSubscriber"
-      JVM_ARGS: "-Daeron.sample.embeddedMediaDriver=true -Daeron.sample.channel=aeron:udp?endpoint=subscriber:9000"
+      ENTRY_POINT: "com.weareadaptive.hydra.training.aeron.Subscriber"
+      JVM_ARGS: "-Dchannel=aeron:udp?endpoint=subscriber:9000"
 
   publisher:
     << : *default-hydra
     environment:
-      ENTRY_POINT: "io.aeron.samples.BasicPublisher"
-      JVM_ARGS: "-Daeron.sample.embeddedMediaDriver=true -Daeron.sample.channel=aeron:udp?endpoint=subscriber:9000"
+      ENTRY_POINT: "com.weareadaptive.hydra.training.aeron.Publisher"
+      JVM_ARGS: "-Dchannel=aeron:udp?endpoint=subscriber:9000"
