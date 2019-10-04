@@ -1,0 +1,3 @@
+dependencies {
+    compile group: 'io.aeron', name: 'aeron-all', version: '1.21.2'
+}

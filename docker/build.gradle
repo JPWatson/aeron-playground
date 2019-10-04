@@ -1,0 +1,27 @@
+configurations {
+    docker
+}
+
+// Do not generate JAR file for this module
+jar.enabled = false
+
+dependencies {
+    docker project(path: ':code')
+}
+
+/**
+ * Copy the jar files that need to be packaged into docker image.
+ */
+task copyDockerJars(type: Copy) {
+
+    // Clear out the output directory before copying,
+    // so that the old versions do not accumulate there
+    dependsOn clean
+
+    from configurations.docker
+    into "$buildDir/libs"
+}
+
+assemble {
+    dependsOn copyDockerJars
+}

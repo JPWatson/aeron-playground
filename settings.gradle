@@ -1,0 +1,4 @@
+rootProject.name = 'aeron-training'
+
+include(':code')
+include(':docker')

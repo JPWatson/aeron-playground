@@ -1,0 +1,20 @@
+version: "3.4"
+x-hydra:
+  &default-hydra
+  build:
+    context: ../../docker/
+  shm_size: '2gb'
+  environment:
+
+services:
+  subscriber:
+    <<: *default-hydra
+    environment:
+      ENTRY_POINT: "io.aeron.samples.BasicSubscriber"
+      JVM_ARGS: "-Daeron.sample.embeddedMediaDriver=true -Daeron.sample.channel=aeron:udp?endpoint=subscriber:9000"
+
+  publisher:
+    << : *default-hydra
+    environment:
+      ENTRY_POINT: "io.aeron.samples.BasicPublisher"
+      JVM_ARGS: "-Daeron.sample.embeddedMediaDriver=true -Daeron.sample.channel=aeron:udp?endpoint=subscriber:9000"
